@@ -1,0 +1,17 @@
+{
+    "name": "API",
+    "license": "proprietary",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "Dykyi\\": ["app/"]
+        }
+    },
+    "require": {
+        "monolog/monolog": "^1.23",
+        "symfony/http-foundation": "^4.0",
+        "psr/log": "^1.0",
+        "guzzlehttp/guzzle": "^6.3",
+        "vlucas/phpdotenv": "^2.4"
+    }
+}
