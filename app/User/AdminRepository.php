@@ -2,8 +2,8 @@
 
 namespace Dykyi\User;
 
-use Dykyi\APIRepository;
-use Dykyi\RepositoryInterface;
+use Dykyi\Model\APIRepository;
+use Dykyi\Model\RepositoryInterface;
 
 /**
  * Class UserRepository

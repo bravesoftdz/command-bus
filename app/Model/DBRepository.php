@@ -1,6 +1,6 @@
 <?php
 
-namespace Dykyi;
+namespace Dykyi\Model;
 
 /**
  * Class DBRepository

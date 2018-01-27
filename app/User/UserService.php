@@ -2,7 +2,7 @@
 
 namespace Dykyi\User;
 
-use Dykyi\RepositoryInterface;
+use Dykyi\Model\RepositoryInterface;
 use Dykyi\User\Transformer\UserDataTransformerInterface;
 use Symfony\Component\HttpFoundation\Response;
 
