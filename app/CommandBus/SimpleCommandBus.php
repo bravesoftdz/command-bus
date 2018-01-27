@@ -3,22 +3,28 @@
 namespace Dykyi\CommandBus;
 
 use Dykyi\Command\CommandInterface;
+use Dykyi\Exception\CommandException;
+use Dykyi\Command\Exception\CommandHandlerNotFound;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class CommandBus
+ * Class SimpleCommandBus
  * @package Dykyi\CommandBus
  */
 class SimpleCommandBus implements CommandBusInterface
 {
     /**
-     * @param CommandInterface $command
+     * @param $command
      * @return Response
      *
-     * @throws \Exception
+     * @throws CommandException
      */
     public function handle(CommandInterface $command)
     {
-        return new Response($command->execute());
+        if(!class_exists(get_class($command))){
+            throw new CommandHandlerNotFound("Command handler not found");
+        }
+
+        $command->execute();
     }
 }

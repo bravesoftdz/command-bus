@@ -3,10 +3,10 @@
 namespace Dykyi;
 
 use Exception;
-use Dykyi\Command\RESTCommand;
-use Dykyi\Command\RPCCommand;
+use Dykyi\Command\GetAdminCommand;
+use Dykyi\Command\GetUserCommand;
 use Dykyi\CommandBus\CommandBusInterface;
-use Dykyi\Request\ApiRequest;
+use Dykyi\User\UserRequest;
 use Symfony\Component\HttpFoundation\Request;
 
 /**
@@ -40,12 +40,11 @@ class Application
         $type = $request->get('type');
         $id   = $request->get('id');
 
-        $apiRequest = new ApiRequest($type, $id);
+        $userRequest    = new UserRequest($type, $id);
 
-        $rpc = new RPCCommand($apiRequest);
-        $rpc->setSuccessor(RESTCommand::class);
+        $getUserCommand = new GetUserCommand($userRequest);
+        $getUserCommand->setSuccessor(new GetAdminCommand($userRequest));
 
-        $responce = $this->bus->handle($rpc);
-        $responce->send();
+        $this->bus->handle($getUserCommand);
     }
 }
